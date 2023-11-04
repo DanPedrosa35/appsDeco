@@ -12,72 +12,71 @@ export interface AboutBusiness {
   name: string;
 
   /**
-  * @title Store segment
-  * @description Tell us what is the segment your store ?
-  */
+   * @title Store segment
+   * @description Tell us what is the segment your store ?
+   */
   segment: string[];
 
-    /**
-  * @title Address
-  * @description Tell us where is location your store with logradouro, state, city and country.
-  */
+  /**
+   * @title Address
+   * @description Tell us where is location your store with logradouro, state, city and country.
+   */
   address: string[];
 
   /**
-  * @title State Available for Delivery
-  * @description Tell us what states is available for delivery
-  */ 
+   * @title State Available for Delivery
+   * @description Tell us what states is available for delivery
+   */
   deliveryStates: string[];
 
   /**
-  * @title Contact
-  * @description Tell us what phone numbers is available for service
-  */
+   * @title Contact
+   * @description Tell us what phone numbers is available for service
+   */
   contact: string[];
 
   /**
-  * @title Payment methods available
-  * @description What payment methods is available, if card is then, specific the flag is available ?
-  */
+   * @title Payment methods available
+   * @description What payment methods is available, if card is then, specific the flag is available ?
+   */
   payment: string[];
 
   /**
-  * @title FAQ
-  * @description Describe what is FAQ
-  */
+   * @title FAQ
+   * @description Describe what is FAQ
+   */
   faq: {
-    question: string; 
-    answer: string
+    question: string;
+    answer: string;
   }[];
 }
 
 export interface ChatConfigs {
-    /**
-  * @title Assistant Icon
-  * @description What is Assistant Icon that you want ?
-  */
+  /**
+   * @title Assistant Icon
+   * @description What is Assistant Icon that you want ?
+   */
   icon: ImageWidget;
 }
 
 /** @title AssistantIA */
 export interface State {
-
   /**
-  * @title ChatGPT Api Key
-  * @description Create account in ChatGpt and access https://platform.openai.com/account/api-keys
-  */
+   * @title ChatGPT Api Key
+   * @description Create account in ChatGpt and access https://platform.openai.com/account/api-keys
+   */
   keyChatGPT: string;
 
   /**
-  * @title Business About
-  * @description Tell us about your business
-  */
+   * @title Business About
+   * @description Tell us about your business
+   */
   AboutBusiness: AboutBusiness;
 
   /**
-  * @title Chat Configurations
-  */
-  Chat: ChatConfigs
+   * @title Chat Configurations
+   */
+  Chat: ChatConfigs;
 
   Integration: Resolved<Suggestion | null>;
 }
@@ -91,13 +90,13 @@ export default function App(
   { AboutBusiness, Chat, Integration, keyChatGPT }: State,
 ) {
   const url = "https://api.openai.com/v1/chat/completions";
-  const bearer = 'Bearer ' + keyChatGPT;
+  const bearer = "Bearer " + keyChatGPT;
 
   const api = createHttpClient<void>({
     base: url,
     headers: new Headers({
-      'Authorization': bearer,
-      'Content-Type': 'application/json'
+      "Authorization": bearer,
+      "Content-Type": "application/json",
     }),
     // Our caching layer changes the user agent that linx requires. This makes the pages break.
     // This fetcher removes the caching layer.
