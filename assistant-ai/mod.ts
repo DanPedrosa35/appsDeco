@@ -82,7 +82,6 @@ export interface State {
 export default function App(
   { AboutBusiness, Chat, Integration, keyChatGPT }: State,
 ) {
-
   return { manifest, state: { AboutBusiness, Chat, Integration, keyChatGPT } };
 }
 
