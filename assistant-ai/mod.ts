@@ -1,6 +1,5 @@
 import type { App, AppContext as AC } from "deco/mod.ts";
 import manifest from "./manifest.gen.ts";
-import { createHttpClient } from "../utils/http.ts";
 import type { ImageWidget } from "../admin/widgets.ts";
 import { Suggestion } from "../commerce/types.ts";
 import { Resolved } from "deco/engine/core/resolver.ts";
@@ -83,18 +82,8 @@ export interface State {
 export default function App(
   { AboutBusiness, Chat, Integration, keyChatGPT }: State,
 ) {
-  const url = "https://api.openai.com/v1/chat/completions";
-  const bearer = "Bearer " + keyChatGPT;
 
-  const api = createHttpClient<void>({
-    base: url,
-    headers: new Headers({
-      "Authorization": bearer,
-      "Content-Type": "application/json",
-    }),
-  });
-
-  return { manifest, AboutBusiness, Chat, Integration, api };
+  return { manifest, state: { AboutBusiness, Chat, Integration, keyChatGPT } };
 }
 
 export type AppContext = AC<ReturnType<typeof App>>;
