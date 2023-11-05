@@ -17,10 +17,10 @@
   
 </p>
 
-# Installation
+# Instalação
 
-1. Install via decohub
-2. Fill the necessary fields:
+1. Instale via decohub
+2. Preencha os campos necessários
 
 1. ChatGPT Api Key. 
   Esse parâmentro é referente a chave Api Key do chat GPT

@@ -3,7 +3,6 @@ import { AppContext } from "../mod.ts";
 
 export interface Props extends StreamProps {
   userMessage: string;
-  apiKey: string;
 }
 
 const messages: { role: string; content: string }[] = [
@@ -55,8 +54,6 @@ async function* loader<T>(
     "role": "user",
     "content": userMessage,
   });
-
-  console.log("ctx", ctx);
 
   // let argumentsInString = "";
   let txtReceived = "";
@@ -111,6 +108,7 @@ async function* loader<T>(
         if (json.choices[0].delta.content) {
           const txt = json.choices[0].delta.content;
           txtReceived += txt;
+          console.log(txtReceived, "APP");
           const a1 = JSON.parse(`{"text": "${txtReceived}"}`);
           yield a1;
         }
@@ -120,6 +118,32 @@ async function* loader<T>(
       }
     }
   }
+
+  //   Yield text+”\n”
+  // Pq ai toda vez q vc ver um \n eh pq eh uma linha
+  // Ai vc faz split \n se tiver length 2 eh pq acabou uma linha e começou a outra
+  // Exemplo:
+
+  // let linhaAtual=“”
+  // Const linhas = []
+  // for await (message of messages) {
+  // Const parts = message.split(“\n”);
+  // linhaAtual += parts[0];
+
+  // For (const linha of parts.slice(1, parts.length-2) {
+  // Linhas.push(linha)
+
+  // }
+  // }
+  // To no cel
+  // Fucou bem ruim mas ve se vc entebde
+  // Entende
+  // A ideia eh q vc poe um separador de linhas
+  // Ou entao… nao precisa nem disso
+  // Se vc so quer ler o texto todo
+  // So fazer um for await (const txt of messages) {
+  // Faz algo aqui com o pedaço de texto
+  // }
 
   console.log("fim");
   return;
