@@ -13,7 +13,7 @@ import * as $$$$$$$$$$$7 from "./apps/linx.ts";
 import * as $$$$$$$$$$$8 from "./apps/admin.ts";
 import * as $$$$$$$$$$$9 from "./apps/analytics.ts";
 import * as $$$$$$$$$$$10 from "./apps/workflows.ts";
-import * as $$$$$$$$$$$11 from "./apps/assistant-ai.ts";
+import * as $$$$$$$$$$$11 from "./apps/assistantai.ts";
 import * as $$$$$$$$$$$12 from "./apps/wake.ts";
 import * as $$$$$$$$$$$13 from "./apps/vnda.ts";
 import * as $$$$$$$$$$$14 from "./apps/verified-reviews.ts";

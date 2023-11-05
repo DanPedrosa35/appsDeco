@@ -56,7 +56,7 @@ async function* loader<T>(
     "content": userMessage,
   });
 
-  console.log("ctx", ctx)
+  console.log("ctx", ctx);
 
   // let argumentsInString = "";
   let txtReceived = "";
