@@ -56,6 +56,8 @@ async function* loader<T>(
     "content": userMessage,
   });
 
+  console.log("ctx", ctx)
+
   // let argumentsInString = "";
   let txtReceived = "";
   const response = await fetch(url, {
