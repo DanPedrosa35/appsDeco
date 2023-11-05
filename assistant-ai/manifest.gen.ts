@@ -3,7 +3,7 @@
 // This file is automatically updated during development when running `dev.ts`.
 
 const manifest = {
-  "name": "AssistantAI",
+  "name": "assistant-ai",
   "baseUrl": import.meta.url,
 };
 

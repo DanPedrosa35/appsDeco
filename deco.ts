@@ -10,6 +10,8 @@ const compatibilityApps = [{
 
 const config = {
   apps: [
+    app("assistant-ai"),
+    app("assistant-ai"),
     app("implementation"),
     app("weather"),
     {

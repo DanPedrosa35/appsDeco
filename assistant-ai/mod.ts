@@ -1,12 +1,9 @@
 import type { App, AppContext as AC } from "deco/mod.ts";
+import manifest from "./manifest.gen.ts";
 import { createHttpClient } from "../utils/http.ts";
-import manifest, { Manifest } from "./manifest.gen.ts";
-import { DecoRequestInit, fetchSafe } from "../utils/fetch.ts";
 import type { ImageWidget } from "../admin/widgets.ts";
 import { Suggestion } from "../commerce/types.ts";
 import { Resolved } from "deco/engine/core/resolver.ts";
-
-export type AppContext = AC<ReturnType<typeof App>>;
 
 export interface AboutBusiness {
   name: string;
@@ -80,11 +77,8 @@ export interface State {
 
   Integration: Resolved<Suggestion | null>;
 }
-
-export const color = 0xFF6A3B;
-
 /**
- * @title Assistant IA
+ * @title assistant-ai
  */
 export default function App(
   { AboutBusiness, Chat, Integration, keyChatGPT }: State,
@@ -98,20 +92,9 @@ export default function App(
       "Authorization": bearer,
       "Content-Type": "application/json",
     }),
-    // Our caching layer changes the user agent that linx requires. This makes the pages break.
-    // This fetcher removes the caching layer.
-    // TODO: Go back to caching requests. This can be done once we have different cache provider (Deno/CF etc)
-    fetcher: (input: string | Request | URL, init?: DecoRequestInit) =>
-      fetchSafe(
-        input,
-        // @ts-ignore no cache for now
-        { ...init, deco: { cache: "no-store" } },
-      ),
   });
 
-  const state = { AboutBusiness, Chat, Integration, api };
-
-  const app: App<Manifest, typeof state> = { manifest, state };
-
-  return app;
+  return { manifest, AboutBusiness, Chat, Integration, api };
 }
+
+export type AppContext = AC<ReturnType<typeof App>>;
